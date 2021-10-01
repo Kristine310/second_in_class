@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 #include "employee.h"
 
 PtrToConstEmployee searchEmployeeByNumber(PtrToConstEmployee ptr, int tableSize, long targetNumber)
@@ -20,7 +21,31 @@ PtrToEmployee searchEmployeeByName(PtrToConstEmployee ptr, int tableSize, char *
 
     for(; ptr < endPtr; ptr++)
     {
-        if (strcmp(ptr->name, targetName))
+        if (strcmp(ptr->name, targetName) == 0)
+            return (PtrToEmployee) ptr;
+    }
+    return NULL;
+}
+
+PtrToEmployee searchEmployeeByPhone(PtrToEmployee ptr, int tableSize, char * targetPhone)
+{
+    const PtrToConstEmployee endPtr = ptr + tableSize;
+
+    for(; ptr < endPtr; ptr++)
+    {
+        if (strcmp(ptr->phone, targetPhone) == 0)
+            return (PtrToEmployee) ptr;
+    }
+    return NULL;
+}
+
+PtrToEmployee searchEmployeeBySalary(PtrToEmployee ptr, int tableSize, double targetSalary)
+{
+    const PtrToEmployee endPtr = ptr + tableSize;
+
+    for(; ptr < endPtr; ptr++)
+    {
+        if (ptr->salary == targetSalary)
             return (PtrToEmployee) ptr;
     }
     return NULL;
